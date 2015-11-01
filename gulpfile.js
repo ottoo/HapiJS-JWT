@@ -1,11 +1,27 @@
 var gulp = require('gulp');
 var sourcemaps = require('gulp-sourcemaps');
+var autoprefixer = require('gulp-autoprefixer');
+var sass = require('gulp-sass');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var browserify = require('browserify');
 var watchify = require('watchify');
 var babel = require('babelify');
 var browserSync = require('browser-sync');
+var plumber = require('gulp-plumber');
+
+function compileScss() {
+  gulp.src(['./src/styles/**/*.scss'])
+    .pipe(plumber({
+      errorHandler: function (error) {
+        console.log(error.message);
+        this.emit('end');
+    }}))
+    .pipe(sass())
+    .pipe(autoprefixer('last 2 versions'))
+    .pipe(gulp.dest('./src/build'))
+    .pipe(browserSync.reload({stream:true}))
+}
 
 function compile(watch) {
   var bundler = watchify(browserify('./src/scripts/app.js', { debug: true }).transform(babel));
@@ -51,8 +67,10 @@ gulp.task('bs-reload', function () {
 
 gulp.task('build', function() { return compile(); });
 gulp.task('watch', function() { return watch(); });
+gulp.task('compileScss', function() { return compileScss(); });
 
-gulp.task('default', ['browser-sync', 'watch'], function() {
-  gulp.watch("src/**/*.html", ['bs-reload']);
-  gulp.watch("src/**/*.js", ['bs-reload']);
+gulp.task('default', ['browser-sync', 'compileScss', 'watch'], function() {
+  gulp.watch('src/styles/**/*.scss', ['compileScss']);
+  gulp.watch('src/**/*.html', ['bs-reload']);
+  gulp.watch('src/**/*.js', ['bs-reload']);
 });
