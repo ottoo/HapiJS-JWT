@@ -17,13 +17,10 @@ module.exports = [
 	},
 	{
 	    method: 'GET',
-	    path: '/{param*}',
-	    handler: {
-	        directory: {
-	            path: '../src',
-	            redirectToSlash: true,
-	            index: true
-	        }
+	    path: '/',
+	    handler: (request, reply) => {
+	    	console.log('asd')
+            reply.file('./../ReactFrontend/index.html');
 	    }
 	}
 ];

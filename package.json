@@ -19,38 +19,14 @@
   "bugs": {
     "url": "https://github.com/ottoo/HapiJS-JWT/issues"
   },
-  "devDependencies": {
-    "babelify": "^6.3.0",
-    "browser-sync": "2.6.5",
-    "browserify": "^11.1.0",
-    "gulp": "3.9.0",
-    "gulp-autoprefixer": "3.1.0",
-    "gulp-babel": "5.1.0",
-    "gulp-cache": "0.2.8",
-    "gulp-concat": "2.5.2",
-    "gulp-imagemin": "2.2.1",
-    "gulp-jshint": "1.10.0",
-    "gulp-plumber": "1.0.1",
-    "gulp-rename": "1.2.2",
-    "gulp-sass": "2.1.0",
-    "gulp-uglify": "1.2.0",
-    "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0",
-    "watchify": "^3.4.0"
-  },
+  "devDependencies": {},
   "homepage": "https://github.com/ottoo/HapiJS-JWT#readme",
   "dependencies": {
-    "angular": "1.4.7",
-    "angular-animate": "1.4.7",
-    "angular-aria": "1.4.7",
-    "angular-material": "0.11.4",
-    "chart.js": "1.0.2",
     "good": "6.4.0",
     "good-console": "5.1.0",
-    "gulp-sourcemaps": "1.6.0",
     "hapi": "11.0.2",
+    "hapi-auth-jwt2": "^5.2.0",
     "hapi-mongodb": "3.1.0",
-    "inert": "3.2.0",
-    "normalize.css": "3.0.3"
+    "inert": "3.2.0"
   }
 }
