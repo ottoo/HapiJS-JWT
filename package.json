@@ -24,9 +24,12 @@
   "dependencies": {
     "good": "6.4.0",
     "good-console": "5.1.0",
-    "hapi": "11.0.2",
+    "hapi": "^13.0.0",
     "hapi-auth-jwt2": "^5.2.0",
     "hapi-mongodb": "3.1.0",
-    "inert": "3.2.0"
+    "inert": "3.2.0",
+    "jsonwebtoken": "^5.4.1",
+    "lodash": "^3.10.1",
+    "mongoose": "^4.4.5"
   }
 }

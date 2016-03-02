@@ -1,14 +1,30 @@
+'use strict';
+
+let JWT = require('jsonwebtoken');
+
 module.exports = [
 	{
 	    method: 'GET',
 	    path: '/login',
+	    config: {
+	    	auth: false
+	    },
 	    handler: function (request, reply) {
-	        reply('Login');
+	    	// let token = JWT.sign({ username: 'ottoki' }, 'NeverShareYourSecret');
+	     //    reply(token);
+	     reply({
+	     	loggedIn: true,
+	     	message: 'Logged in successfully',
+	     	role: 'ADMIN'
+	     });
 	    }
 	}, 
 	{
 	    method: 'GET',
-	    path: '/assets/{param*}',
+		path: '/assets/{param*}',
+		config: {
+	    	auth: false
+	    },
 	    handler: {
 	        directory: {
 	            path: '../node_modules'
@@ -17,10 +33,23 @@ module.exports = [
 	},
 	{
 	    method: 'GET',
-	    path: '/',
+	    path: '/test',
+	    config: {
+	    	auth: 'jwt',
+	    	handler: (request, reply) => {
+	            reply('test');
+		    }
+	    }
+	    
+	},
+	{
+	    method: 'GET',
+	    path: '/{param*}',
+	    config: {
+	    	auth: false
+	    },
 	    handler: (request, reply) => {
-	    	console.log('asd')
             reply.file('./../ReactFrontend/index.html');
 	    }
-	}
+	},
 ];
