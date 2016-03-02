@@ -1,3 +1,4 @@
-# HapiJS-JWT
+# HapiJSBackend
 
-HapiJS app with JWT authentication
+A personal HapiJS backend project with MongoDB and Mongoose schemas
+

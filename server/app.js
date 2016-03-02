@@ -1,24 +1,16 @@
 'use strict';
 
-var Hapi = require('hapi');
-var HapiJwt2 = require('hapi-auth-jwt2');
-var Inert = require('inert');
-var Good = require('good');
-var _ = require('lodash');
-var JWT = require('jsonwebtoken');
+let Hapi = require('hapi');
+let HapiJwt2 = require('hapi-auth-jwt2');
+let Inert = require('inert');
+let Good = require('good');
+let _ = require('lodash');
+let JWT = require('jsonwebtoken');
 
-var DB = require('./config/database');
+let DB = require('./config/database');
+let routes = require('./routes');
 
-var routes = require('./routes');
-
-var users = [
-        {
-            username: 'ottoki',
-            password: 'sala'
-        }
-    ];
-
-var validate = function (decoded, request, callback) {
+let validate = function (decoded, request, callback) {
     let foundUser = _.some(users, (user) => {
         return user.username === decoded.username && user.password === decoded.password;
         console.log('user found')
@@ -35,7 +27,7 @@ var validate = function (decoded, request, callback) {
 };
 
 // Create server instance
-var server = new Hapi.Server();
+let server = new Hapi.Server();
 server.connection({
     port: 3333
 });
