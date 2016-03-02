@@ -6,10 +6,9 @@ var Inert = require('inert');
 var Good = require('good');
 var _ = require('lodash');
 var JWT = require('jsonwebtoken');
-var mongoose = require('mongoose');
 
-var config = require('./config/config');
-console.log(config.getDBAddress())
+var DB = require('./config/database');
+
 var routes = require('./routes');
 
 var users = [
@@ -72,15 +71,7 @@ server.register([{
 
     server.route(routes);
 
-    server.start(() => {
-        var MongoDB = mongoose.connect(config.getDBAddress()).connection;
-
-        MongoDB.on('error', function(err) { 
-            console.log(err.message); 
-        });
-
-        MongoDB.once('open', function() {
-          console.log("mongodb connection open");
-        });
+    server.start(function() {
+        server.log('info', 'Server running at: ' + server.info.uri);
     });
 });
