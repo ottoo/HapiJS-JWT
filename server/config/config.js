@@ -5,5 +5,7 @@ module.exports = {
         db: 'local',
         username: '',
         password: ''
-    }
+    },
+    jwtSecret: 'examplesecret',
+    tokenExpiry: 60 * 60 * 24
 };

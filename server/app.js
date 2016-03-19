@@ -5,25 +5,24 @@ let HapiJwt2 = require('hapi-auth-jwt2');
 let Inert = require('inert');
 let Good = require('good');
 let _ = require('lodash');
+let Moment = require('moment');
 let JWT = require('jsonwebtoken');
 
 let DB = require('./config/database');
 let routes = require('./routes');
 
+let tokenExpiry = require('./config/config.js').tokenExpiry;
+let jwtSecret = require('./config/config.js').jwtSecret;
+
 let validate = function (decoded, request, callback) {
-    let foundUser = _.some(users, (user) => {
-        return user.username === decoded.username && user.password === decoded.password;
-        console.log('user found')
-    });
-
+    var diff = Moment().diff(Moment(decoded.iat * 1000));
     console.log(decoded)
+    if (diff > tokenExpiry * 1000) {
+        console.log('IN HERE')
+        return callback(null, false);
+    }
 
-    if (!foundUser) {
-      return callback(null, false);
-    }
-    else {
-      return callback(null, true);
-    }
+    callback(null, true);
 };
 
 // Create server instance
@@ -56,7 +55,7 @@ server.register([{
     }
 
     server.auth.strategy('jwt', 'jwt', 'required', { 
-        key: 'NeverShareYourSecret',
+        key: jwtSecret,
         validateFunc: validate,
         verifyOptions: { algorithms: [ 'HS256' ] }
     });

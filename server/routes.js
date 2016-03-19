@@ -4,6 +4,7 @@ let Bcrypt = require('bcrypt');
 let Boom = require('boom');
 let Joi = require('joi');
 let JWT = require('jsonwebtoken');
+var _ = require('lodash');
 let User = require('./models/user').User;
 let generateJWT = require('./utils/utils.js').generateJWT;
 
@@ -24,8 +25,7 @@ module.exports = [
 	    		if (!user) {
 	    			return reply(Boom.notFound('User not found'));
 	    		}
-	    		console.log(request.payload.password);
-	    		console.log(user.password)
+
 	    		Bcrypt.compare(request.payload.password, user.password, (err, isValid) => {
 	    			if (!isValid) {
 	    				return reply(Boom.unauthorized('Invalid password'));	    				
@@ -33,7 +33,9 @@ module.exports = [
 
     				let token = generateJWT(user);
 
-    				return reply('User validated successfully with token: ' + token);	
+    				return reply({
+    					token: token
+    				});	
 	    		});
 	    	});
 	    }
@@ -46,7 +48,11 @@ module.exports = [
 			validate: {
 		        payload: {
 		            email: Joi.string().required(),
-		            password: Joi.string().required()
+		            password: Joi.string().required(),
+		            name: Joi.object().keys({
+		            	firstName: Joi.string().required(),
+		            	lastName: Joi.string().required()
+		            })
 		        }
 	    	},
 		},
@@ -55,6 +61,10 @@ module.exports = [
 			var user = new User({
 		  		email: request.payload.email.trim(),
 		  		password: hash,
+		  		name: {
+		  			firstName: request.payload.name.firstName.trim(),
+		  			lastName: request.payload.name.lastName.trim()
+		  		}
 		 	});
 
 	    	user.save((err, user) => {
@@ -84,11 +94,11 @@ module.exports = [
 	},
 	{
 	    method: 'GET',
-	    path: '/test',
+	    path: '/testauth',
 	    config: {
 	    	auth: 'jwt',
 	    	handler: (request, reply) => {
-	            reply('test');
+	            reply('Auth successful!');
 		    }
 	    }
 	    
