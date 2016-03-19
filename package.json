@@ -22,15 +22,16 @@
   "devDependencies": {},
   "homepage": "https://github.com/ottoo/HapiJS-JWT#readme",
   "dependencies": {
+    "bcrypt": "^0.8.5",
     "boom": "^3.1.2",
     "good": "6.4.0",
     "good-console": "5.1.0",
     "hapi": "^13.0.0",
-    "hapi-auth-jwt2": "^5.2.0",
+    "hapi-auth-jwt2": "^5.4.1",
     "hapi-mongodb": "3.1.0",
     "inert": "3.2.0",
     "joi": "^8.0.4",
-    "jsonwebtoken": "^5.4.1",
+    "jsonwebtoken": "^5.7.0",
     "lodash": "^3.10.1",
     "mongoose": "^4.4.5"
   }
