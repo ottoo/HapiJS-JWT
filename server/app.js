@@ -16,9 +16,8 @@ let jwtSecret = require('./config/config.js').jwtSecret;
 
 let validate = function (decoded, request, callback) {
     var diff = Moment().diff(Moment(decoded.iat * 1000));
-    console.log(decoded)
+
     if (diff > tokenExpiry * 1000) {
-        console.log('IN HERE')
         return callback(null, false);
     }
 

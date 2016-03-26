@@ -7,13 +7,58 @@ let JWT = require('jsonwebtoken');
 var _ = require('lodash');
 let User = require('./models/user').User;
 let generateJWT = require('./utils/utils.js').generateJWT;
+let jwtSecret = require('./config/config.js').jwtSecret;
 
 module.exports = [
+	{
+		method: 'POST',
+		path: '/user/me',
+		config: {
+	    	auth: false,
+	    	cors: { origin: ['http://localhost:8080']},
+	    	validate: {
+		        payload: {
+		            token: Joi.string().required()
+		        }
+	    	}
+	    },
+	    handler: (request, reply) => {
+	    	const token = request.payload.token;
+
+	    	if (!token) {
+	    		return reply(Boom.notFound('Token not found'));
+	    	}
+
+	    	JWT.verify(token, jwtSecret, (err, user) => {
+	    		if (err) {
+	    			return reply(Boom.badRequest('Invalid token provided'));
+	    		}
+
+	    		User.findById({
+	    			'_id': user._id
+	    		}, (err, user) => {
+	    			if (err) throw err;
+
+	    			return reply({
+	    				token: token,
+	    				userId: user._id
+	    			});
+	    		});
+	    	});
+	    }
+	},
 	{
 	    method: 'POST',
 	    path: '/user/login',
 	    config: {
-	    	auth: false
+	    	auth: false,
+	    	cors: { origin: ['http://localhost:8080']},
+	    	validate: {
+		        payload: {
+		            email: Joi.string().required(),
+		            password: Joi.string().required()
+		        }
+	    	}
 	    },
 	    handler: (request, reply) => {
 	    	User.findOne({
@@ -34,7 +79,8 @@ module.exports = [
     				let token = generateJWT(user);
 
     				return reply({
-    					token: token
+    					token: token,
+    					userId: user._id
     				});	
 	    		});
 	    	});
