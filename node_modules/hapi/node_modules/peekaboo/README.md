@@ -13,23 +13,25 @@ Lead Maintainer - [Eran Hammer](https://github.com/hueniverse)
 We can report the download process of a request by peeking on response stream events:
 
 ```javascript
-var Events = require('events');
-var Fs = require('fs');
-var Https = require('https');
-var Peekaboo = require('peekaboo');
+'use strict';
 
-var emitter = new Events.EventEmitter();
-var peek = new Peekaboo(emitter);
+const Events = require('events');
+const Fs = require('fs');
+const Https = require('https');
+const Peekaboo = require('peekaboo');
 
-Https.get('https://codeload.github.com/hapijs/hapi/zip/master', function (res) {
+const emitter = new Events.EventEmitter();
+const peek = new Peekaboo(emitter);
+
+Https.get('https://codeload.github.com/hapijs/hapi/zip/master', (res) => {
 
     res.pipe(peek).pipe(Fs.createWriteStream('./hapi.zip'));
 
-    var downloaded = 0;
-    emitter.on('peek', function (chunk) {
+    let downloaded = 0;
+    emitter.on('peek', (chunk) => {
 
         downloaded += chunk.length;
-        var pct = (downloaded / res.headers['content-length'] * 100).toFixed(1);
+        const pct = (downloaded / res.headers['content-length'] * 100).toFixed(1);
         process.stdout.write(pct + '% downloaded\r');
     });
 });
