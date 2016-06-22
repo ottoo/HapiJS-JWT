@@ -34,7 +34,7 @@ server.connection({
 server.register([{
     register: require('hapi-cors'),
 	options: {
-		origins: ['http://localhost:8080', 'http://localhost:8000']
+		origins: ['*']
 	}
 },{
     register: Good,
