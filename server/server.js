@@ -32,6 +32,11 @@ server.connection({
 
 // Register plugins, routes and start the server
 server.register([{
+    register: require('hapi-cors'),
+	options: {
+		origins: ['http://localhost:8080', 'http://localhost:8000']
+	}
+},{
     register: Good,
     options: {
         ops: {

@@ -14,9 +14,6 @@ module.exports = [{
     path: '/user/me',
     config: {
         auth: false,
-        cors: {
-            origin: ['http://localhost:8080']
-        },
         validate: {
             payload: {
                 token: Joi.string().required()
@@ -52,9 +49,6 @@ module.exports = [{
     path: '/user/login',
     config: {
         auth: false,
-        cors: {
-            origin: ['http://localhost:8080']
-        },
         validate: {
             payload: {
                 email: Joi.string().required(),

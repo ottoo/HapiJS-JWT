@@ -32,6 +32,7 @@
     "good-console": "^6.1.1",
     "hapi": "^13.4.0",
     "hapi-auth-jwt2": "^6.0.0",
+    "hapi-cors": "^1.0.1",
     "hapi-mongodb": "^6.0.0",
     "inert": "^4.0.0",
     "joi": "^8.1.0",
