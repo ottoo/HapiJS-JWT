@@ -7,7 +7,7 @@ let JWT = require('jsonwebtoken');
 var _ = require('lodash');
 let User = require('./models/user').User;
 let generateJWT = require('./utils/utils.js').generateJWT;
-let jwtSecret = require('./config/config.js').jwtSecret;
+let jwtSecret = require('./config').jwtSecret;
 
 module.exports = [{
     method: 'POST',

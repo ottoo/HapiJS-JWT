@@ -1,11 +1,11 @@
 module.exports = {
     database: {
-        host: '188.166.26.119',
-        port: 27017,
-        db: 'local',
+        host: '',
+        port: null,
+        db: '',
         username: '',
         password: ''
     },
-    jwtSecret: 'examplesecret',
+    jwtSecret: '',
     tokenExpiry: 60 * 60 * 24
 };

@@ -8,11 +8,11 @@ let _ = require('lodash');
 let Moment = require('moment');
 let JWT = require('jsonwebtoken');
 
-let DB = require('./config/database');
+let DB = require('./config/db/database');
 let routes = require('./routes');
 
-let tokenExpiry = require('./config/config.js').tokenExpiry;
-let jwtSecret = require('./config/config.js').jwtSecret;
+let tokenExpiry = require('./config').tokenExpiry;
+let jwtSecret = require('./config').jwtSecret;
 
 let validate = function(decoded, request, callback) {
     var diff = Moment().diff(Moment(decoded.iat * 1000));
