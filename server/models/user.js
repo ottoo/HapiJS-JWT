@@ -1,6 +1,8 @@
-var Mongoose = require('mongoose');
+'use strict';
 
-var userSchema = new Mongoose.Schema({
+const Mongoose = require('mongoose');
+
+const userSchema = new Mongoose.Schema({
     name: { firstName: { type: String, required: true }, lastName: { type: String, required: true }},
     email: { type: String, required: true, index: true, unique: true },
     password: { type: String, required: true },
@@ -11,6 +13,6 @@ var userSchema = new Mongoose.Schema({
     dateCreated: { type: Date, required: true, default: Date.now }
 });
 
-var User = Mongoose.model('User', userSchema);
+const User = Mongoose.model('User', userSchema);
 
 exports.User = User;

@@ -1,7 +1,16 @@
-var Mongoose = require('mongoose');
-var Config = require('./../index.js');
+const Mongoose = require('mongoose');
+const Config = require('./../index.js');
 
-var MongoDB = Mongoose.connect('mongodb://' + Config.database.host + ':' + Config.database.port + '/' + Config.database.db).connection;
+const uri = `mongodb://${Config.database.host}:${Config.database.port}/${Config.database.db}`;
+const MongoDB = Mongoose.connect(uri, {
+  db: { native_parser: true },
+  server: { poolSize: 5 },
+  auth: {
+    authdb: 'admin'
+  },
+  user: Config.database.username,
+  pass: Config.database.password
+}).connection;
 
 MongoDB.on('error', function(err) {
     console.log(err.message);

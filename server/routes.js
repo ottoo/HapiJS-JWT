@@ -1,13 +1,13 @@
 'use strict';
 
-let Bcrypt = require('bcrypt');
-let Boom = require('boom');
-let Joi = require('joi');
-let JWT = require('jsonwebtoken');
-var _ = require('lodash');
-let User = require('./models/user').User;
-let generateJWT = require('./utils/utils.js').generateJWT;
-let jwtSecret = require('./config').jwtSecret;
+const Bcrypt = require('bcrypt');
+const Boom = require('boom');
+const Joi = require('joi');
+const JWT = require('jsonwebtoken');
+const _ = require('lodash');
+const User = require('./models/user').User;
+const generateJWT = require('./utils/utils.js').generateJWT;
+const jwtSecret = require('./config').jwtSecret;
 
 module.exports = [{
     method: 'POST',

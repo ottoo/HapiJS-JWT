@@ -1,20 +1,20 @@
 'use strict';
 
-let Hapi = require('hapi');
-let HapiJwt2 = require('hapi-auth-jwt2');
-let Inert = require('inert');
-let Good = require('good');
-let _ = require('lodash');
-let Moment = require('moment');
-let JWT = require('jsonwebtoken');
+const Hapi = require('hapi');
+const HapiJwt2 = require('hapi-auth-jwt2');
+const Inert = require('inert');
+const Good = require('good');
+const _ = require('lodash');
+const Moment = require('moment');
+const JWT = require('jsonwebtoken');
 
-let DB = require('./config/db/database');
-let routes = require('./routes');
+const DB = require('./config/db/database');
+const routes = require('./routes');
 
-let tokenExpiry = require('./config').tokenExpiry;
-let jwtSecret = require('./config').jwtSecret;
+const tokenExpiry = require('./config').tokenExpiry;
+const jwtSecret = require('./config').jwtSecret;
 
-let validate = function(decoded, request, callback) {
+const validate = function(decoded, request, callback) {
     var diff = Moment().diff(Moment(decoded.iat * 1000));
 
     if (diff > tokenExpiry * 1000) {
@@ -25,7 +25,7 @@ let validate = function(decoded, request, callback) {
 };
 
 // Create server instance
-let server = new Hapi.Server();
+const server = new Hapi.Server();
 server.connection({
     port: 3334
 });
