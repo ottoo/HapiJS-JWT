@@ -203,5 +203,13 @@ module.exports = [{
             reply('Auth successful!');
         }
     }
-
+}, {
+    method: 'GET',
+    path: '/test',
+    config: {
+        auth: false,
+        handler: (request, reply) => {
+            reply({ message: 'OK' });
+        }
+    }
 }];
