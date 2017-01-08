@@ -1,8 +1,18 @@
 version: '2'
 
 services:
+  app:
+    build:
+      context: ../
+      dockerfile: ./docker/Dockerfile
+    restart: always
+    links:
+      - mongodb
+    ports:
+      - "3334:3334"
   mongodb:
     image: 'bitnami/mongodb:latest'
+    restart: always
     ports:
       - "27017:27017"
     environment:
