@@ -1,11 +1,26 @@
 # HapiJSBackend
 
-A personal HapiJS backend project with MongoDB and Mongoose schemas
+A personal HapiJS backend project with MongoDB and Mongoose schemas.
 
 # Instructions
 
-To run the server in development, copy the contents of `config.prod.js` to a
-file named `config.dev.js`.
+First, `npm install`.
+
+To run the server, add `.env` -file to the root of the project containing the following information:
+
+```
+MONGODB_DATABASE=
+MONGODB_USERNAME=
+MONGODB_PASSWORD=
+MONGODB_ROOT_PASSWORD=
+DB_HOST=
+DB_PORT=
+DB_NAME=
+DB_USER=
+DB_PASSWORD=
+JWT_SECRET=
+TOKEN_EXPIRY=
+```
 
 ### Run in dev mode
 
@@ -18,3 +33,19 @@ file named `config.dev.js`.
 ### Watch for changes
 
 `npm run server:watch`
+
+## Docker
+
+To run the server and/or mongodb locally, go to the `docker` directory and copy the created
+`.env` file there.
+
+### Run application
+
+`docker compose up -d`
+
+The application will be available at
+`http://localhost:3334`.
+
+### Run only the database
+
+`docker compose up -d mongodb`
