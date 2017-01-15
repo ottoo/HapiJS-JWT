@@ -27,6 +27,8 @@ module.exports = [{
             return reply(Boom.notFound('Token not found'));
         }
 
+        // Verify the token manually so we get the decoded user object back
+        // from the token. Normally would use auth: 'jwt'.
         JWT.verify(token, jwtSecret, (err, user) => {
             if (err) {
                 return reply(Boom.badRequest('Invalid token provided'));
