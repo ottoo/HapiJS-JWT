@@ -1,8 +1,8 @@
 'use strict';
 
 const JWT = require('jsonwebtoken');
-const jwtSecret = require('./../config').jwtSecret;
-const tokenExpiry = require('./../config').tokenExpiry;
+const jwtSecret = process.env.JWT_SECRET;
+const tokenExpiry = process.env.TOKEN_EXPIRY;
 
 module.exports = {
     generateJWT: function(user) {

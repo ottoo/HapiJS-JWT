@@ -15,8 +15,7 @@ services:
     restart: always
     ports:
       - "27017:27017"
-    environment:
-      - MONGODB_DATABASE=xxx
-      - MONGODB_ROOT_PASSWORD=xxx
+    env_file:
+      - .env
     volumes:
       - "/var/mongo/data:/bitnami/mongodb"
