@@ -6,7 +6,7 @@ const Joi = require('joi');
 const JWT = require('jsonwebtoken');
 const _ = require('lodash');
 const User = require('./models/user').User;
-const generateJWT = require('./utils/utils.js').generateJWT;
+const Utils = require('./../server/utils/utils.js');
 const jwtSecret = process.env.JWT_SECRET;
 
 module.exports = [{
@@ -74,7 +74,7 @@ module.exports = [{
                         return reply(Boom.unauthorized('Invalid password'));
                     }
 
-                    let token = generateJWT(user);
+                    let token = Utils.generateJWT(user);
 
                     return reply({
                         token: token,
@@ -202,7 +202,7 @@ module.exports = [{
     config: {
         auth: 'jwt',
         handler: (request, reply) => {
-            reply('Auth successful!');
+            reply({ message: 'Auth successful!' });
         }
     }
 }, {
