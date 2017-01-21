@@ -1,5 +1,7 @@
 # HapiJSBackend
 
+[![Build Status](https://api.travis-ci.org/ottoo/HapiJSBackend.svg)](https://travis-ci.org/ottoo/HapiJSBackend)
+
 A personal HapiJS backend project with MongoDB and Mongoose schemas.
 
 # Instructions
