@@ -11,7 +11,7 @@ const JWT = require('jsonwebtoken');
 require('dotenv').config();
 
 const DB = require('./config/db/database');
-const routes = require('./routes');
+const routes = require('./routes/user');
 
 const validate = function(decoded, request, callback) {
     var diff = Moment().diff(Moment(decoded.iat * 1000));
@@ -79,3 +79,5 @@ server.register([{
         server.log('info', 'Server running at: ' + server.info.uri);
     });
 });
+
+module.exports = server;
