@@ -19,11 +19,11 @@ describe('GET /user/me', () => {
     UserMock.expects('findById').yields(null, expected);
 
     const req = {
-      method: 'POST',
+      method: 'GET',
       url: '/user/me',
-      payload: JSON.stringify({
-        token
-      })
+      headers: {
+        authorization: `Bearer ${token}`
+      }
     };
 
     server.inject(req, res => {
@@ -46,11 +46,11 @@ describe('GET /user/me', () => {
     UserMock.expects('findById').yields(err, null);
 
     const req = {
-      method: 'POST',
+      method: 'GET',
       url: '/user/me',
-      payload: JSON.stringify({
-        token
-      })
+      headers: {
+        authorization: `Bearer ${token}`
+      }
     };
 
     server.inject(req, res => {

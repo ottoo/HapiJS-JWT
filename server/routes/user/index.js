@@ -10,15 +10,10 @@ const jwtSecret = process.env.JWT_SECRET;
 const UserRoutes = require('./handlers')
 
 module.exports = [{
-    method: 'POST',
+    method: 'GET',
     path: '/user/me',
     config: {
-        auth: false,
-        validate: {
-            payload: {
-                token: Joi.string().required()
-            }
-        }
+        auth: 'jwt'
     },
     handler: UserRoutes.meHandler
   },

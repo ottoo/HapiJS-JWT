@@ -12,7 +12,7 @@ const jwtSecret = process.env.JWT_SECRET;
  * authenticated or not, for example on browser refresh.
  */
 const meHandler = (request, reply) => {
-  const token = request.payload.token;
+  const token = request.headers.authorization.substring(7);
 
   if (!token) {
       return reply(Boom.notFound('Token not found'));
