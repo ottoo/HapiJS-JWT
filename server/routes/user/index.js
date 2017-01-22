@@ -132,33 +132,4 @@ module.exports = [{
             }
         });
     }
-}, {
-    method: 'GET',
-    path: '/assets/{param*}',
-    config: {
-        auth: false
-    },
-    handler: {
-        directory: {
-            path: '../../../node_modules'
-        }
-    }
-}, {
-    method: 'GET',
-    path: '/testauth',
-    config: {
-        auth: 'jwt',
-        handler: (request, reply) => {
-            reply({ message: 'Auth successful!' });
-        }
-    }
-}, {
-    method: 'GET',
-    path: '/test',
-    config: {
-        auth: false,
-        handler: (request, reply) => {
-            reply({ message: 'OK' });
-        }
-    }
 }];
