@@ -4,11 +4,11 @@ const sinon = require('sinon');
 
 const Utils = require('./../server/utils/utils.js');
 
-describe('GET /test', () => {
+describe('GET /api/test', () => {
   it('responds with a json message', function(done) {
     const req = {
       method: 'GET',
-      url: '/test'
+      url: '/api/test'
     };
 
     server.inject(req, res => {
@@ -20,12 +20,12 @@ describe('GET /test', () => {
   });
 });
 
-describe('GET /testauth', () => {
+describe('GET /api/testauth', () => {
   it('responds with a json message', function(done) {
     const token = Utils.generateMockJWT();
     const req = {
       method: 'GET',
-      url: '/testauth',
+      url: '/api/testauth',
       headers: { Authorization: `Bearer ${token}`}
     };
 

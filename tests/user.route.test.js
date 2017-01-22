@@ -7,7 +7,7 @@ const Utils = require('./../server/utils/utils.js');
 const UserRoutes = require('./../server/routes/user/handlers');
 const User = require('./../server/models/user').User;
 
-describe('GET /user/me', () => {
+describe('GET /api/user/me', () => {
   it('should respond with a json message', function(done) {
     const token = Utils.generateMockJWT();
 
@@ -20,7 +20,7 @@ describe('GET /user/me', () => {
 
     const req = {
       method: 'GET',
-      url: '/user/me',
+      url: '/api/user/me',
       headers: {
         authorization: `Bearer ${token}`
       }
@@ -47,7 +47,7 @@ describe('GET /user/me', () => {
 
     const req = {
       method: 'GET',
-      url: '/user/me',
+      url: '/api/user/me',
       headers: {
         authorization: `Bearer ${token}`
       }
