@@ -4,7 +4,7 @@
   "description": "HapiJS JWT",
   "main": "app.js",
   "scripts": {
-    "test": "mocha .setup.js --compilers js:babel-core/register ./tests",
+    "test": "NODE_ENV=test mocha .setup.js --compilers js:babel-core/register ./tests",
     "coverage": "nyc --reporter=html npm run test",
     "server:dev": "cross-env NODE_ENV=development node server/server.js",
     "server:prod": "cross-env NODE_ENV=production node server/server.js",

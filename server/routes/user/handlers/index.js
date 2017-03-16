@@ -14,10 +14,6 @@ const jwtSecret = process.env.JWT_SECRET;
 const meHandler = (request, reply) => {
   const token = request.headers.authorization.substring(7);
 
-  if (!token) {
-      return reply(Boom.notFound('Token not found'));
-  }
-
   // Verify the token manually so we get the decoded user object back
   // from the token. Normally would use auth: 'jwt'.
   JWT.verify(token, jwtSecret, (err, user) => {
