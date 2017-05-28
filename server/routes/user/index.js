@@ -13,7 +13,7 @@ module.exports = [{
     method: 'GET',
     path: '/user/me',
     config: {
-        auth: 'jwt'
+        auth: false
     },
     handler: UserRoutes.meHandler
   },
@@ -24,7 +24,7 @@ module.exports = [{
         auth: false,
         validate: {
             payload: {
-                email: Joi.string().required(),
+                username: Joi.string().required(),
                 password: Joi.string().required()
             }
         }
@@ -49,16 +49,12 @@ module.exports = [{
         auth: false,
         validate: {
             payload: {
-                email: Joi.string().email().required(),
+                username: Joi.string().required(),
                 password: Joi.string().required(),
                 name: Joi.object().keys({
                     firstName: Joi.string().required(),
                     lastName: Joi.string().required()
-                }),
-                age: Joi.number().integer().min(1).max(120).required(),
-                twitter: Joi.string(),
-                facebook: Joi.string(),
-                homepage: Joi.string()
+                })
             }
         }
     },

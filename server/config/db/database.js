@@ -4,9 +4,13 @@ if (process.env.NODE_ENV !== 'test') {
   const uri = `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`;
   const MongoDB = Mongoose.connect(uri, {
     db: { native_parser: true },
-    server: { poolSize: 5 },
+    server: {
+      poolSize: 5,
+      reconnectInterval: 1000,
+      reconnectTries: Number.MAX_VALUE,
+    },
     auth: {
-      authdb: 'admin'
+      authdb: 'own'
     },
     user: process.env.DB_USER,
     pass: process.env.DB_PASSWORD

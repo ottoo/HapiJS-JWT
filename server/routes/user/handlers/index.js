@@ -12,7 +12,9 @@ const jwtSecret = process.env.JWT_SECRET;
  * authenticated or not, for example on browser refresh.
  */
 const meHandler = (request, reply) => {
-  const token = request.headers.authorization.substring(7);
+  const authorizationHeader = request.headers.authorization;
+
+  const token = authorizationHeader && authorizationHeader.substring(7);
 
   // Verify the token manually so we get the decoded user object back
   // from the token. Normally would use auth: 'jwt'.
@@ -39,7 +41,7 @@ const meHandler = (request, reply) => {
  */
 const loginHandler = (request, reply) => {
   User.findOne({
-    email: request.payload.email
+    username: request.payload.username
   })
   .exec((err, user) => {
     if (err) throw err;
@@ -57,7 +59,8 @@ const loginHandler = (request, reply) => {
 
         return reply({
             token: token,
-            userId: user._id
+            userId: user._id,
+            username: user.username
         });
     });
   });
@@ -76,16 +79,12 @@ const findByIdHandler = (request, reply) => {
 const createUserHandler = (request, reply) => {
   const hash = Bcrypt.hashSync(request.payload.password.trim(), 10);
   const user = new User({
-    email: request.payload.email.trim(),
+    username: request.payload.username.trim(),
     password: hash,
     name: {
       firstName: request.payload.name.firstName.trim(),
       lastName: request.payload.name.lastName.trim()
-    },
-    age: request.payload.age,
-    twitter: request.payload.twitter,
-    facebook: request.payload.facebook,
-    homepage: request.payload.homepage
+    }
   });
 
   user.save((err, user) => {

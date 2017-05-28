@@ -76,7 +76,7 @@ describe('POST /api/user/login', () => {
       .returns('test_token');
     const UserMock = sinon.mock(User);
     const expected = {
-      email: 'test@test.com',
+      username: 'testuser',
       '_id': '587bb173dbdb9a2894c099cb',
       password: '$2a$10$C4Op1O2Kt6h88vzYwa0F3O/EnR0VALURkCbcVcBCGNSD7n9N6fxCe'
     };
@@ -89,7 +89,7 @@ describe('POST /api/user/login', () => {
       method: 'POST',
       url: '/api/user/login',
       payload: {
-        email: 'test@test.com',
+        username: 'testuser',
         password: 'salasana'
       }
     };
@@ -101,7 +101,8 @@ describe('POST /api/user/login', () => {
       expect(res.statusCode).to.equal(200);
       expect(res.result).to.deep.equal({
         token: 'test_token',
-        userId: '587bb173dbdb9a2894c099cb'
+        userId: '587bb173dbdb9a2894c099cb',
+        username: 'testuser'
       });
       done();
     });
@@ -121,7 +122,7 @@ describe('POST /api/user/login', () => {
       method: 'POST',
       url: '/api/user/login',
       payload: {
-        email: 'test@test.com',
+        username: 'testuser',
         password: 'salasana'
       }
     };
@@ -142,7 +143,7 @@ describe('POST /api/user/login', () => {
       .returns('test_token');
     const UserMock = sinon.mock(User);
     const expected = {
-      email: 'test@test.com',
+      username: 'testuser',
       '_id': '587bb173dbdb9a2894c099cb',
       password: '$2a$10$C4Op1O2Kt6h88vzYwa0F3O/EnR0VALURkCbcVcBCGNSD7n9N6fxCe'
     };
@@ -155,7 +156,7 @@ describe('POST /api/user/login', () => {
       method: 'POST',
       url: '/api/user/login',
       payload: {
-        email: 'test@test.com',
+        username: 'testuser',
         password: 'salasana123'
       }
     };
