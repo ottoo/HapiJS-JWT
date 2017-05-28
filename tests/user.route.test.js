@@ -19,6 +19,7 @@ describe('GET /api/user/me', () => {
     };
 
     UserMock.expects('findById')
+      .once()
       .yields(null, expected);
 
     const req = {
@@ -48,6 +49,7 @@ describe('GET /api/user/me', () => {
     };
 
     UserMock.expects('findById')
+      .once()
       .yields(err, null);
 
     const req = {
@@ -82,6 +84,7 @@ describe('POST /api/user/login', () => {
     };
 
     UserMock.expects('findOne')
+      .once()
       .chain('exec')
       .yields(null, expected);
 
@@ -115,6 +118,7 @@ describe('POST /api/user/login', () => {
     const UserMock = sinon.mock(User);
 
     UserMock.expects('findOne')
+      .once()
       .chain('exec')
       .yields(null, null);
 
@@ -149,6 +153,7 @@ describe('POST /api/user/login', () => {
     };
 
     UserMock.expects('findOne')
+      .once()
       .chain('exec')
       .yields(null, expected);
 
