@@ -45,7 +45,8 @@
     "jsonwebtoken": "7.4.1",
     "lodash": "4.17.4",
     "moment": "2.18.1",
-    "mongoose": "4.13.0"
+    "mongoose": "4.13.0",
+    "socket.io": "2.0.4"
   },
   "devDependencies": {
     "chai": "4.0.0",
