@@ -18,4 +18,4 @@ services:
     env_file:
       - .env
     volumes:
-      - "/var/mongo/data:/bitnami/mongodb"
+      - "/var/mongo/data:/bitnami"
