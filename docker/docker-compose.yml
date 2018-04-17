@@ -1,5 +1,7 @@
-version: '2'
-
+version: '2.1'
+volumes:
+  mongodb:
+  
 services:
   app:
     build:
@@ -18,4 +20,4 @@ services:
     env_file:
       - .env
     volumes:
-      - "/var/mongo/data:/bitnami"
+      - "mongodb:/bitnami"

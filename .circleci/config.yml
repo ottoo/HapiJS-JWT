@@ -1,0 +1,22 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+jobs:
+  build:
+    environment:
+      - JWT_SECRET: 'JwtSecret'
+      - TOKEN_EXPIRY: 86400
+    docker:
+      - image: circleci/node:8.9.0
+    steps:
+      - checkout
+      - restore_cache:
+          key: v1-be-dependency-cache-{{ checksum "package.json" }}
+      - run: npm install
+      - save_cache:
+          key: v1-be-dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+      - run: npm run test:ci

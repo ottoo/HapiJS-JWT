@@ -1,6 +1,6 @@
 # HapiJSBackend
 
-[![Build Status](https://api.travis-ci.org/ottoo/HapiJSBackend.svg)](https://travis-ci.org/ottoo/HapiJSBackend)
+[![Build Status](https://circleci.com/gh/ottoo/HapiJSBackend/tree/master.svg?style=shield&circle-token=7452b036509c90784a124fcb9e1c8742bc063400)](https://circleci.com/gh/ottoo/HapiJSBackend)
 
 A personal HapiJS backend project with MongoDB and Mongoose schemas.
 
@@ -35,19 +35,3 @@ TOKEN_EXPIRY=
 ### Watch for changes
 
 `npm run server:watch`
-
-## Docker
-
-To run the server and/or mongodb locally, go to the `docker` directory and copy the created
-`.env` file there.
-
-### Run application
-
-`docker compose up -d`
-
-The application will be available at
-`http://localhost:3334`.
-
-### Run only the database
-
-`docker compose up -d mongodb`
