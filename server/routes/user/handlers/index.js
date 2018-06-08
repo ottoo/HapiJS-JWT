@@ -69,15 +69,15 @@ const loginHandler = async (request) => {
 };
 
 const findByIdHandler = (request) => {
-  User.findById(request.params.id, (err, user) => {
-    if (!err) {
-      return user;
-    }
-    throw Boom.notFound('Couldnt find user with the given id');
+  return User.findById(request.params.id).exec().then((user) => {
+    console.log(`Found user with id ${request.params.id}`);
+    return user;
+  }).catch(() => {
+    throw Boom.notFound(`Couldn't find user with the given id ${request.params.id}`);
   });
 };
 
-const createUserHandler = (request) => {
+const createUserHandler = async (request) => {
   const hash = Bcrypt.hashSync(request.payload.password.trim(), 10);
   const user = new User({
     username: request.payload.username.trim(),
@@ -88,16 +88,15 @@ const createUserHandler = (request) => {
     }
   });
 
-  user.save((err, user) => {
-    if (!err) {
-      return user;
-    }
-
+  return user.save(user).then((user) => {
+    console.log(`Created a new user with username ${request.payload.username}`);
+    return user;
+  }).catch((err) => {
     if (err.code === 11000 || err.code === 11001) {
-      throw Boom.forbidden('please provide another user id, it already exists');
+      throw Boom.forbidden(`Please provide another username, ${request.payload.username} already exists`);
     }
 
-    throw Boom.forbidden('error while creating an user');
+    throw Boom.forbidden(`Error while creating an user with username ${request.payload.username}`);
   });
 };
 
@@ -111,7 +110,7 @@ const updateUserHandler = (request) => {
     if (!err) {
       return user;
     }
-    throw Boom.notFound('Couldnt find user to update with the given id');
+    throw Boom.notFound(`Couldn't find user to update with the given id ${request.payload.id}`);
   });
 };
 
