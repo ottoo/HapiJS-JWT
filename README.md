@@ -1,8 +1,9 @@
 # HapiJSBackend
 
-[![Build Status](https://circleci.com/gh/ottoo/HapiJSBackend/tree/master.svg?style=shield&circle-token=7452b036509c90784a124fcb9e1c8742bc063400)](https://circleci.com/gh/ottoo/HapiJSBackend)
+[![CircleCI](https://circleci.com/gh/ottoo/HapiJSBackend.svg?style=svg)](https://circleci.com/gh/ottoo/HapiJSBackend)
 
-A personal HapiJS backend project with MongoDB and Mongoose schemas.
+A personal HapiJS backend project with MongoDB and Mongoose schemas. Has basic user management apis
+for logging in via JWT authentication, finding and updating users.
 
 # Instructions
 
