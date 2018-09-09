@@ -1,9 +1,15 @@
+const fs = require('fs');
+const path = require('path');
 const JWT = require('jsonwebtoken');
 
-const jwtSecret = process.env.JWT_SECRET;
 const tokenExpiry = process.env.TOKEN_EXPIRY;
 
 class Utils {
+  constructor() {
+    this.privateKey = fs.readFileSync(path.join(__dirname, '..', '..', 'jwtRS256.key'));
+    this.publicKey = fs.readFileSync(path.join(__dirname, '..', '..', 'jwtRS256.key'));
+  }
+
   generateJWT(user) {
     const jwtData = {
       name: user.name,
@@ -11,7 +17,7 @@ class Utils {
       _id: user._id.toString()
     };
 
-    const jwt = JWT.sign(jwtData, jwtSecret, {
+    const jwt = JWT.sign(jwtData, this.privateKey, {
       expiresIn: Number(tokenExpiry)
     });
 
