@@ -24,8 +24,6 @@ const registerPlugins = async (server) => {
     }
   }, {
     plugin: require('./plugins/frontend.static.route.plugin')
-  }, {
-    plugin: require('./plugins/socket.io.plugin')
   }]);
 
   if (!Utils.isTesting()) {
